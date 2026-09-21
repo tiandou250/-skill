@@ -122,12 +122,13 @@ agent_created: true
 
 ```bash
 bash "<plugin_root>/scripts/wb/local/setup-html-to-docx.sh"
-export HTML_TO_DOCX_PY="${HTML_TO_DOCX_VENV:-$HOME/.venv-html-to-docx}/bin/python"
 cd "<plugin_root>/skills/html-to-docx/scripts"
-"$HTML_TO_DOCX_PY" -m html_to_docx convert "<输出目录>\report.html" -o "<输出目录>\<文献短名>_总结报告.docx"
+"$HOME/.venv-html-to-docx/bin/python" -m html_to_docx convert "<输出目录>\report.html" -o "<输出目录>\<文献短名>_总结报告.docx"
 ```
 
 `<plugin_root>` 用 Glob 在 `C:\Users\14986\.workbuddy\plugins\cache\workbuddy-builtin\tencent-docx\*\` 下取版本号最大的那个目录。
+
+> Windows 上 venv 的解释器是 `Scripts\python.exe` 而不是 `bin/python`（`setup-html-to-docx.sh` 打印的 `Python runner:` 那行才是准的，以它为准）。
 
 **备用路径**（本机 bash 缺 coreutils，`ls`/`head`/`cp`/`bash` 均不可用，setup 脚本会失败）：
 
@@ -172,6 +173,7 @@ cwd 需设为 `<plugin_root>\skills\html-to-docx\scripts`，或用 `PYTHONPATH` 
 
 ## Pitfalls
 
+- **SKILL.md 里的 `${...}` 会在技能加载时被替换掉。** 技能正文会过一遍 `substituteLoadTimeVariables`：`${XXX}` 形式的片段会被就地求值（`$HOME`、`$VAR` 这类裸变量则原样保留）。所以正文里不要写 `${...}`，需要变量就写裸 `$HOME`。
 - **本机 bash 不可用。** `ls`、`head`、`cp`、`grep` 等命令都不存在，别用 bash 做文件操作或管道。用 Python 一行式、或 Read/Write/Glob 工具。
 - **结构图别塞太多节点。** 超过 14 个节点或 3 层，图会被拉成竖条，在 Word 里缩得很小、字看不清。宁可把「3.1 / 3.2 / 3.3」合并成「3 方法」一个节点的三个子项，也不要铺满全文目录。
 - **图片宽度写 `width="528"`（上限 13.97cm）。** 转换引擎把图片宽度硬顶在 5.5 英寸，写更大无效、不写则按 PNG 的 300dpi 元数据推算成 14.8cm——反而会轻微超出版心。写 `528` 最稳。
