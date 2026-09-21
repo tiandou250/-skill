@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>文献总结报告</title>
+<style>
+  body { font-family: "微软雅黑", sans-serif; font-size: 11pt; color: #1f2937; line-height: 1.7; }
+  h1 { font-size: 20pt; color: #111827; text-align: center; margin-bottom: 4pt; }
+  h2 { font-size: 14pt; color: #4f46e5; margin-top: 18pt; margin-bottom: 6pt; }
+  p  { margin: 6pt 0; }
+  .meta { text-align: center; font-size: 9.5pt; color: #6b7280; margin-bottom: 14pt; }
+  .figcap { text-align: center; font-size: 9.5pt; color: #6b7280; margin-top: 4pt; }
+  table { border-collapse: collapse; width: 100%; }
+  th { background-color: #eef2ff; color: #312e81; text-align: left; }
+  th, td { border: 1px solid #cbd5e1; padding: 5pt 8pt; font-size: 10pt; }
+  li { margin: 3pt 0; }
+</style>
+</head>
+<body>
+<!--
+  文献阅读器 · 报告骨架
+  使用方式：把 {{...}} 占位符换成实际内容，删掉不需要的段落。
+  注意：
+    1. 只使用本文件里出现过的标签与类名，不要引入新的复杂 CSS。
+    2. 图片统一写 width="528"（= 13.97cm，转换引擎的图片宽度上限）。
+    3. src 用相对路径 figs/xxx.png，report.html 与 figs/ 同级。
+    4. 图表渲染后必须肉眼看过：不能有文字重叠、标签压线。
+-->
+
+<h1>{{文献标题}}</h1>
+<p class="meta">文献类型：{{期刊论文 / 预印本 / 学位论文 / 综述 / 技术报告}} ｜ 阅读日期：{{YYYY-MM-DD}} ｜ 报告由「文献阅读器」生成</p>
+
+<div data-component="callout">
+<strong>一句话说清楚：</strong>{{用一句不超过 60 字的话，说清这篇文献想证明什么、结论是什么，不要用术语}}
+</div>
+
+<h2>一、文献速览</h2>
+<table>
+  <tr><th>项目</th><th>内容</th></tr>
+  <tr><td>研究问题</td><td>{{作者要回答的核心问题，一句话}}</td></tr>
+  <tr><td>核心主张</td><td>{{作者给出的答案 / 提出的方法，一句话}}</td></tr>
+  <tr><td>研究方法</td><td>{{实验设计 / 数据来源 / 论证方式}}</td></tr>
+  <tr><td>主要结论</td><td>{{最关键的 1–2 条结论}}</td></tr>
+  <tr><td>局限</td><td>{{作者承认的 + 你看出的}}</td></tr>
+</table>
+
+<h2>二、文献结构导图</h2>
+<img src="figs/fig1_tree.png" width="528" style="display: block; margin-left: auto; margin-right: auto;">>
+<p class="figcap">图 1　文献结构导图：{{一句话说明全文的推进逻辑}}</p>
+<p>{{解读：全文的主线是什么？哪一章是重心？哪一节是胜负手？3–5 句话}}</p>
+
+<h2>三、研究流程图</h2>
+<img src="figs/fig2_flow.png" width="528" style="display: block; margin-left: auto; margin-right: auto;">
+<p class="figcap">图 2　研究流程图：{{从什么到什么的关键环节}}</p>
+<p>{{解读：把流程按因果关系讲一遍，点出哪个环节最巧妙或最可疑。3–5 句话}}</p>
+
+<h2>四、核心概念关系图</h2>
+<img src="figs/fig3_concept.png" width="528" style="display: block; margin-left: auto; margin-right: auto;">
+<p class="figcap">图 3　核心概念关系图：{{几个核心概念之间的制衡关系}}</p>
+<p>{{解读：概念之间是替代关系还是分工关系？哪个是可调节的阀门？3–5 句话}}</p>
+
+<h2>五、大白话解读</h2>
+<p>{{第一段：打一个日常生活的比方，把整篇文献的机制讲一遍。不要出现术语}}</p>
+<p>{{第二段：把比方逐步对回文献里的真实概念，说清「作者的办法为什么有效」}}</p>
+<p>{{第三段：落到一句话结论——作者真正想验证的是什么。}}</p>
+
+<h2>六、关键结论</h2>
+<ol>
+  <li>{{结论 1，一句话，带关键限定条件}}</li>
+  <li>{{结论 2}}</li>
+  <li>{{结论 3}}</li>
+</ol>
+
+<h2>七、关键证据与数据</h2>
+<ul>
+  <li>{{实验规模 / 样本量 / 数据来源}}</li>
+  <li>{{对照组与变量设置}}</li>
+  <li>{{关键指标的数值结果}}</li>
+</ul>
+
+<h2>八、局限与存疑</h2>
+<ul>
+  <li>{{作者自己承认的局限}}</li>
+  <li>{{你看出的、作者没说的薄弱点}}</li>
+  <li>{{结论成立的前提条件，换个场景是否还成立}}</li>
+</ul>
+
+<h2>九、对我的启发</h2>
+<ol>
+  <li>{{可迁移的思路}}</li>
+  <li>{{可以立刻用上的做法}}</li>
+  <li>{{需要注意的坑}}</li>
+</ol>
+
+<h2>十、术语对照</h2>
+<table>
+  <tr><th>英文原词</th><th>中文含义</th></tr>
+  <tr><td>{{Term}}</td><td>{{中文解释，一句话}}</td></tr>
+</table>
+
+</body>
+</html>
